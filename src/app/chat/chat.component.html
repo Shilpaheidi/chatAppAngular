@@ -1,11 +1,35 @@
-<div class="chat-container">
+<!-- <div class="chat-container">
     <div class="message-list">
       <div *ngFor="let msg of messages">
-        <strong>{{ msg.user }}:</strong> {{ msg.message }}
+       
+
+        {{ msg.message }}
       </div>
     </div>
-    <input [(ngModel)]="username" placeholder="Username" />
+    <input [(ngModel)]="receiver" placeholder="Username" />
     <input [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Message" />
     <button (click)="sendMessage()">Send</button>
+  </div> -->
+
+  <div class="chat-container">
+    <div class="message-list">
+      <!-- [ngClass]="{'current-user': msg.user === username, 'receiver-user': msg.user !== username}" -->
+      <div *ngFor="let msg of messages" [class.current-user]="msg.userId == 1"   [class.receiver-user]="msg.userId == 3" >
+        <div class="message-box">
+          <strong *ngIf="msg.user !== username">{{ msg.user }}:</strong>
+          {{ msg.message }}
+        </div>
+      </div>
+    </div>
+  
+    <div class="chat-inputs">
+      <input [(ngModel)]="receiver" placeholder="Receiver Username" />
+      <input
+        [(ngModel)]="message"
+        (keyup.enter)="sendMessage()"
+        placeholder="Message"
+      />
+      <button class="" (click)="sendMessage()">Send</button>
+    </div>
   </div>
   
